@@ -1,1 +1,164 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
+namespace PMMv2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string githubUrl = "https://raw.githubusercontent.com/jhigg544345/09000/main/YizziCamModV2.dll ";
+            string directoryPath = textBox1.Text;
+
+            // Extract file name from URL
+            string fileName = githubUrl.Split('/').Last();
+
+            // Combine the directory path and file name
+            string fullPath = Path.Combine(directoryPath, fileName);
+
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var response = client.GetAsync(githubUrl).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var fileBytes = response.Content.ReadAsByteArrayAsync().Result;
+                        // Ensure the directory exists before trying to save the file
+                        if (!Directory.Exists(directoryPath))
+                        {
+                            Directory.CreateDirectory(directoryPath);
+                        }
+                        File.WriteAllBytes(fullPath, fileBytes);
+                        MessageBox.Show($"Successfully downloaded the DLL to: {fullPath}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to download the file. " + response.ReasonPhrase);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string githubUrl = "https://raw.githubusercontent.com/jhigg544345/mmm/main/MonoSandbox.dll";
+            string directoryPath = textBox1.Text;
+
+            // Extract file name from URL
+            string fileName = githubUrl.Split('/').Last();
+
+            // Combine the directory path and file name
+            string fullPath = Path.Combine(directoryPath, fileName);
+
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var response = client.GetAsync(githubUrl).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var fileBytes = response.Content.ReadAsByteArrayAsync().Result;
+                        // Ensure the directory exists before trying to save the file
+                        if (!Directory.Exists(directoryPath))
+                        {
+                            Directory.CreateDirectory(directoryPath);
+                        }
+                        File.WriteAllBytes(fullPath, fileBytes);
+                        MessageBox.Show($"Successfully downloaded the DLL to: {fullPath}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to download the file. " + response.ReasonPhrase);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string githubUrl = "https://raw.githubusercontent.com/jhigg544345/000/main/Bark-1.5.1.dll ";
+            string directoryPath = textBox1.Text;
+
+            // Extract file name from URL
+            string fileName = githubUrl.Split('/').Last();
+
+            // Combine the directory path and file name
+            string fullPath = Path.Combine(directoryPath, fileName);
+
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var response = client.GetAsync(githubUrl).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var fileBytes = response.Content.ReadAsByteArrayAsync().Result;
+                        // Ensure the directory exists before trying to save the file
+                        if (!Directory.Exists(directoryPath))
+                        {
+                            Directory.CreateDirectory(directoryPath);
+                        }
+                        File.WriteAllBytes(fullPath, fileBytes);
+                        MessageBox.Show($"Successfully downloaded the DLL to: {fullPath}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to download the file. " + response.ReasonPhrase);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
